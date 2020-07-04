@@ -175,16 +175,15 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  attr_reader :age
-  def initialize(params)
+  def initialize(**params)
     @name = params[:name]
     @age = params[:age]
   end
 
   def introduce
-    if age == 32
+    if @age == 32
       "こんにちは，#{@name}と申します。よろしくお願いいたします。"
-    elsif age ==10
+    elsif @age ==10
       "はいさいまいど〜，#{@name}です！！！"
     end
   end
@@ -216,11 +215,34 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  attr_reader :name, :age
+  def initialize(name:, age:)
+    @name = name
+    @age = age
+  end
 end
 
 class Zoo
   # 以下に回答を記載
+  attr_reader :name, :entry_fee
+  def initialize(name:, entry_fee:)
+    @name = name
+    @entry_fee = entry_fee
+
+  end
+  
+  def info_entry_fee(user)
+    if user.age <= 5 
+      puts "#{user.name}さんの入場料金は#{entry_fee[:infant]}円です。"
+    elsif user.age <= 12
+      puts "#{user.name}さんの入場料金は#{entry_fee[:children]}円です。"
+    elsif user.age <= 64
+      puts "#{user.name}さんの入場料金は#{entry_fee[:adult]}円です。"
+    elsif user.age <= 120
+      puts "#{user.name}さんの入場料金は#{entry_fee[:senior]}円です。"
+    end
+
+  end
 
 end
 
